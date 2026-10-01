@@ -10,12 +10,12 @@ class Perceptron:
         self.weights = None
         self.bias = None
 
-#method fit huấn luyện model bằng cách điều chính trọng số (weights) và hệ số tự do (bias) mỗi khi modek không phân loại được điểm (point)
+#method fit huấn luyện model bằng cách điều chính trọng số (weights) và hệ số tự do (bias) mỗi khi model không phân loại được điểm (point)
     def fit(self, X, y):
         #Number of samples and features
         n_samples, n_features = X.shape
 
-        #Initialize weights and bía
+        #Initialize weights and bias
         self.weights = np.zeros(n_features)
         self.bias = 0
 
@@ -56,3 +56,16 @@ p.fit(X,y)
 
 #Test the model
 print("Predictions:", p.predict(X))
+
+# giải thích quá trình học của perceptron
+# giải thích cấu hình khởi tạo: khởi tạo weights và bias bằng 0, điều này cho phép model bắt đầu học từ cơ bản.
+# tính toán linear_output: với mỗi điểm dữ liệu, perceptron tính toán tổng có trọng số của inputs và cộng với hệ số tự do
+# activation (step function): nếu linear output lớn hơn hoặc bằng 0, gán với class 1, nếu không gán với class 0
+# update rule: nếu như dự đoán không chính xác, model sẽ điều chỉnh trọng số và hệ số tự do theo hướng giảm error. Update rule như sau: weights += learning_rate*(y_true - y_pred) * x
+# điều này giúp Perceptron chỉ update các điểm dữ liệu sai phân loại, dần dần đảy mô hình gần với ranh giới quyết định (decision boundary) chính xác.
+
+#visualizing decision boundaries: trực quan hóa ranh giới quyết định sau khi training. Điều này đặc biệt giúp ích khi bạn làm việc với các datasets phức tạp. Từ bây giờ, chúng tôi sẽ giữ mọi thứ đơn giản với AND gate.
+
+#mở rộng ra với MLP (Multi-Layer Perceptrons): mặc dù perceptron chỉ giới hạn ở các vấn đề phân chia tuyến tính, nó là nền tảng của các mạng neural phức tạp hơn như Multi Layer Perceptrons (MLPs). Với MLPs, chúng tôi sẽ thêm một vài hidden layer và hàm kích hoạt (như ReLU hoặc Sigmoid) để giải quyết các vấn đề phi tuyến
+
+#tổng kết: Perceptron là một thuật toán đơn giản nhưng nền tảng. Bằng cách hiểu perceptron hoạt động
